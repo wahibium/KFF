@@ -1,4 +1,4 @@
-In experimental version will be released in November 2014
+An experimental version will be released in November 2014
 ===
 ===
 An End-To-End Automated Method for GPU Multi-Kernel Transformations to Exploit Inter-Kernel Data Locality of Stencil Applications
