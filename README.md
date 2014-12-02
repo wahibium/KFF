@@ -6,17 +6,25 @@
 --------------------------------------------------
 
 author:   Mohamed Wahib
+
 version:  0.1
+
 released: Nov 2014
+
 license:  MIT License
+
 language: C++
 
 This project includes different components of an end-to-end framework for automatically transforming stencil-based CUDA programs to exploit inter-kernel data locality. The transformation is based on two basic operations, kernel fission and fusion, and relies on a series of steps: gathering metadata, generating graphs expressing dependencies and precedency constraints, searching for optimal kernel fissions/fusions, and code generation. Simple annotations are provided for enabling CUDA-to-CUDA transformations at which the user-written kernels are collectively replaced by auto- generated kernels optimized for locality. Driven by the flexibility required for accommodating different applications, we propose a workflow transformation approach to enable user intervention at any of the transformation steps. We demonstrate the practicality and effectiveness of automatic transformations in exploiting exposed data localities using real-world weather models of large codebases having dozens of kernels and data arrays. Experimental results show that the proposed end-to-end automated approach, with minimum intervention from the user, yields improvement in performance that is comparable to manual kernel fusion.
 
 The project includes the following components:
+
 1- LOGGA: a grouped genetic algorithm, which searches for optimal kernel fissions/fusions that would generate the ideal data reuse for the exposed locality.
+
 2- Metadata Gatherer: a set of tools to gather metadata about the performance and characteristics of the original program.
+
 3- DDG and OEG Generators: a tools applying heuristics to extract the Data dependency Graph and Order-Execution-Graphs from the source code. The tools also allow amending the graphs.
+
 4- Translator: a program for translating the original CUDA code to new CUDA code for which the kernel transformation was applied. The translator uses ROSE compiler to parse, change and unparse the original source code.
 
 The components mentioned above will be released in the stated order after testing and verifying each component individually. Each component is designed to be used as a standalone tool or as part of the end-to-end framework
