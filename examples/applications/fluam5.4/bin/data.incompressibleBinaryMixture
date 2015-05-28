@@ -1,0 +1,144 @@
+#To compile the GPU code you need also the
+#code "HydroGrid". Open the file 
+#gpuFH/bin/makefile 
+#and modify lines 1 and 2.
+
+#To use the code you need
+#an input file for the GPU code
+#(look at data.incompressibleBinaryMixture)
+#and an input for the HydroGrid code
+#(look at hydroGridOptions.nml).
+
+
+#To run the code type
+#mainstandard inputfile
+
+#To modify the code go to
+#the file 
+#gpuFH/src/schemeIncompressibleBinaryMixture.cu
+#
+#and follow the flow.
+
+
+
+
+
+
+#The next options are needed for the
+#simulations of incompressible 
+#binary mixtures
+
+
+
+#indicate what kind of simulation
+#you want to perform. In this case a 
+#incompressible binary mixture
+#with a trapezoidal rule for
+#the advection
+incompressibleBinaryMixture
+
+#Midpoint rule for the advection
+#with 1 RNG
+#incompressibleBinaryMixtureMidPoint
+
+
+#indicate number of cells in each direction
+#mx my mz
+cells 128	32	1
+
+
+#indicate size of the simulation box
+#lx ly lz
+#IMPORTANT: this notation is confusing, this is
+#the size of the simulation box NOT the size of a
+#single cell
+celldimension		0.4	0.1	0.00625
+
+
+#indicate a seed for the random numbers.
+#If you don't give any, the code takes
+#one from the computer clock.
+#seed			1
+
+
+#indicate the fluid density
+densfluid               0.858
+
+
+#indicate the fluid viscosity
+shearviscosity          1.6784e-4
+
+
+#indicate the temperature in energy units
+#k_B*T
+temperature             4.1828e-14
+
+
+#indicate concentration for the species 0
+concentration 	0.01
+
+
+#indicate mass diffusion
+diffusion	4.8904e-5
+
+
+#indicate molecular masses of the
+#two species
+massSpecies0	1.511e-20
+massSpecies1	1.511e-20
+
+
+#indicate the external gradient concentration
+#don't care by the name
+gradTemperature   0.20315
+
+
+#indicate the time step
+dt			 0.2
+
+
+#indicate the number of relaxation times,
+#where the code doesn't save data or
+#call HydroGrid
+numstepsRelaxation	0
+
+
+#indicate number of time-steps
+numsteps                1000
+
+
+#indicate with which frequency the code
+#should call HydriGrid for average
+samplefreq		5
+
+
+#indicate with which frequency the code
+#HydorGrid should save data.
+#IMPORTANT, savefreq should be a multiple
+#of samplefreq
+savefreq		5
+
+
+#how initialize the fluid
+#0=fluid with homogeneous velocity
+#  and concentration
+initfluid 5
+
+
+#indicate a constant background velocity
+#for the fluid
+#vx vy vz
+backgroundvelocity 0  0	    0
+
+
+#indicate name for the output files
+#IMPORTANT, the directory you are using should
+#exist before you call the code
+outputname		/home/floren/gblob/data/run1
+
+
+#if you want to load a previous configuration
+#provide the file with the fluid configuration
+#fluid                 	/home/floren/gblob/data/run1.fluidFinalConfiguration
+
+

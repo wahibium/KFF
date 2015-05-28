@@ -1,0 +1,126 @@
+#In general it's better not to use this option
+#setDevice 0
+
+#
+#These values are for water at 300K, the units are
+#Angstrom, picoseconds and gr/mol=N_avogadro * gr
+#
+
+#Chose scheme
+#default scheme: RK3
+thermostat
+#ghost
+#binaryMixture
+#binaryMixtureWall
+#giantFluctuations
+#continuousGradient
+#particles	1
+#boundary	 	sphereIncompressible1.dat
+#boundary	 	boundary1.dat
+#incompressible
+#incompressibleBoundaryRK2
+#quasiNeutrallyBuoyant
+#particlesWall
+#incompressibleBinaryMixtureMidPoint
+#incompressibleBinaryMixture
+#freeEnergyCompressibleParticles
+#semiImplicitCompressibleParticles
+
+
+identity_prefactor	0.0
+
+volumeboundaryconst	8
+
+numberparticles		1000
+volumeParticle		8000
+mass			8000
+omega0			384000
+
+
+cutoff                  22.4492409662
+
+
+
+maxNumberPartInCellNonBonded    10
+maxNumberPartInCell     10
+
+
+
+
+densfluid               1
+#shearviscosity		argon=5.474	water=53.71
+#bulkviscosity		argon=1.823	water=127.05
+shearviscosity          1
+bulkviscosity           .1110534
+
+
+
+temperature             1
+numstepsRelaxation	0
+numsteps                10000
+
+dt			0.25
+
+samplefreq              50
+savefreq		0
+
+initfluid 1
+
+
+#presionparameters a0 a1 a2
+# p = a0 + a1*density + a2*density**2
+#pressureparameters       231.091	-947.837	920.671
+pressureparameters 0	16	0
+
+
+#checkVelocity	   	kk.coor
+
+outputname		../data/run1
+
+
+#saveVTK		0
+
+
+cells			32	32	32
+celldimension		320	320	320
+#seed			1
+
+loadparticles		0
+coordinates		/home/floren/gpuFH/bin/kk.coor
+#velocities		/home/floren/gpuFH/bin/reynolds.vel
+
+#bondedForces		harmonicTrap.dat
+
+
+#fluid			/home/floren/gblob/data/gVsReynolds/quasiNeutrallyBuoyant/run57.fluidFinalConfiguration
+
+#backgroundvelocity 1	0.333	0.333
+backgroundvelocity 0  0	    0
+
+#binaryMixture
+diffusion	0.001
+#diffusion	2.829e-5
+massSpecies0	1.511e-20
+massSpecies1	1.511e-20
+concentration 	0.5
+
+#binaryMixtureWall
+concentrationWall	0.5	0.5
+densityWall		1	1
+vxWall			0.	0.
+vyWall			0	0
+vzWall			0	0
+
+soretCoefficient  0.06486
+#temperature differences 4.35 8.70 17.40 0.20315
+gradTemperature   0
+
+
+
+
+
+
+
+
+
+

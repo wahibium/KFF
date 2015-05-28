@@ -1,0 +1,54 @@
+#Input file for the simulation of a incompressible
+#fluid with PBC
+
+
+
+#Chose scheme
+incompressible
+
+
+
+#Number of cells, mx, my, mz
+cells			32      32      32
+
+#System size Lx, Ly, Lz
+celldimension		32	32	32
+
+
+#Fluid dendisty
+densfluid               1
+
+#Shear viscosity
+shearviscosity          1
+
+
+
+#Temperature in units of energy, k_B*T
+temperature             0.1
+
+
+
+#Number of relaxation stesp, while the
+#code doesn't save data
+numstepsRelaxation	0
+#Number of steps
+numsteps                1000
+#time step
+dt                      1
+
+#sample frequency
+samplefreq              50
+savefreq		0
+
+#Initial state for the fluid
+initfluid 0
+#Load fluid confiruation
+#fluid       ../data/run1.fluidFinalConfiguration
+
+
+
+outputname		../data/run1
+
+
+
+

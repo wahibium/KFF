@@ -1,0 +1,21 @@
+function out=makemovie(mplot,LinearGrid,hdf5_file,fig)
+
+%% try to get the overlap of pictures;
+mplot.noplot=1;
+[data,pos]=PlotData(mplot,LinearGrid,hdf5_file); % Get the complex field.
+% normalize data
+data=data./max(max)
+
+
+mplot.field='topology';
+mplot.data=1;
+[topo,pos]=PlotData(mplot,LinearGrid,hdf5_file);
+
+mypcolor(fig,pos.x,pos.y,data);
+hold on
+
+
+
+
+
+end

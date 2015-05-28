@@ -1,0 +1,15 @@
+populationSize  = 1000
+problemSize     = 30
+fitnessFunction = 2
+
+offspringPercentage = 50
+
+tournamentSize = 4 
+allowMerge = 0
+
+maxNumberOfGenerations = 40
+epsilon                = 0.01
+
+outputFile = output.3deceptive.30
+
+randSeed = 123

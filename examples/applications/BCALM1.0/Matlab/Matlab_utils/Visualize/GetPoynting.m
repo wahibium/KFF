@@ -1,0 +1,108 @@
+function [data,mplot,POSITION]= GetPoynting(mplot,LinearGrid,hdf5_file)
+
+fieldEr=[{'Ex_real'},{'Ey_real'},{'Ez_real'}];
+fieldHr=[{'Hx_real'},{'Hy_real'},{'Hz_real'}];
+fieldEi=[{'Ex_imag'},{'Ey_imag'},{'Ez_imag'}];
+fieldHi=[{'Hx_imag'},{'Hy_imag'},{'Hz_imag'}];
+
+Poynting=mplot;
+
+switch mplot.field
+    
+    case 'Px'
+      indexE(1)=2;
+      indexE(2)=3;
+      indexH(1)=3;
+      indexH(2)=2;
+        
+    case 'Py'
+        
+      indexE(1)=3;
+      indexE(2)=1;
+      indexH(1)=1;
+      indexH(2)=3;
+        
+        
+    case 'Pz'
+        
+      indexE(1)=1;
+      indexE(2)=2;
+      indexH(1)=2;
+      indexH(2)=1;
+        
+    otherwise
+        error(sprintf('Wrong field name %s',mplot.field))
+        
+end
+
+%% Calculating the Poynting vector
+% It might be that the output does not contain all the fields required. In
+% that case the try will yield an error that would be caught. The missing
+% fields are assumed to be zero
+try 
+%getting E1
+Poynting.field=fieldEr{indexE(1)};
+[E1r,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+Poynting.field=fieldEi{indexE(1)}
+[E1i,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+E1c=E1r+i*E1i;
+msize=size(E1c);
+catch
+E1c=0;
+warning(['Field ' fieldEr{indexE(1)} ' is not in the output and assumed zero'])
+end
+
+
+%Getting E2
+try
+Poynting.field=fieldEr{indexE(2)};
+[E2r,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+Poynting.field=fieldEi{indexE(2)};
+[E2i,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+E2c=E2r+i*E2i;
+msize=size(E2c);
+catch
+E2c=0;
+warning(['Field ' fieldEr{indexE(2)} ' is not in the output and assumed zero'])
+end
+
+
+%Getting H1
+try
+Poynting.field=fieldHr{indexH(1)};
+[H1r,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+Poynting.field=fieldHi{indexH(1)};
+[H1i,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+H1c=H1r+i*H1i;
+msize=size(H1c);
+catch
+H1c=0;
+warning(['Field ' fieldHr{indexH(1)} ' is not in the output and assumed zero'])
+end
+
+% Getting H2
+try
+Poynting.field=fieldHr{indexH(2)};
+[H2r,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+Poynting.field=fieldHi{indexH(2)};
+[H2i,mplot,POSITION]=JustGetData(Poynting,hdf5_file);
+H2c=H2r+i*H2i;
+msize=size(H2c);
+catch
+H2c=0;
+warning(['Field ' fieldHr{indexH(2)} ' is not in the output and assumed zero'])
+end
+
+% Put zeros for the caught stuff;
+
+
+
+
+data=E1c.*conj(H1c)-E2c.*conj(H2c);
+
+
+
+
+
+
+end

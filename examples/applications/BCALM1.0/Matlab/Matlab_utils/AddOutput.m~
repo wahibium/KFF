@@ -1,0 +1,29 @@
+function g=AddOutputZones(g,output)
+ 
+ output=SetPosition(g,output);
+ if (isfield(output,'calibrate')&& (output.calibrate==1))
+    if (isfield(g,'calibrate')&& (g.calibrate==1))
+        
+        output.name=[output.name 'Cal'];
+        
+    end
+ end
+ if ~isfield(g,'outputzones')
+     g.outputzones=[];
+ end
+ 
+ if ~isfield(g,'deltaT')
+     B=output.foutstop*1.1;
+     dt=LinearGrid.info.dt
+     floor(1/(2*B*dt));
+ end
+ 
+ g.outputzones=[g.outputzones;output];
+     
+     
+     
+ 
+ 
+end
+
+ 
