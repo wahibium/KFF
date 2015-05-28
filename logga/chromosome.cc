@@ -1,32 +1,10 @@
-// ################################################################################
-//
-// name:          chromosome.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions for manipulation with the chromosomes in a population (each chromosome represents a solution)
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include "chromosome.h"
 #include "memalloc.h"
 #include "utils.h"
 
-// ================================================================================
-//
-// name:          initChromosome
-//
-// function:      initialized a chromosome, sets its size to zero
-//
-// parameters:    chromosome.....chromosome to initialize
-//
-// returns:       void
-//
-// ================================================================================
-void initChromosome(Chromosome *chromosome)
+
+void InitChromosome(Chromosome *chromosome)
 {
   chromosome->chromoLen = 0;
   //chromosome->chromoIdx = id;
@@ -36,20 +14,8 @@ void initChromosome(Chromosome *chromosome)
     //  copyGroup(groups[i],groups[i]);
   return;
 }
-  
-// ================================================================================
-//
-// name:          freeChromosome
-//
-// function:      frees the memory used by the chromosome
-//
-// parameters:    chromosome.....chromosome to free
-//
-// returns:       void
-//
-// ================================================================================
 
-void freeChromosome(Chromosome *chromosome)
+void FreeChromosome(Chromosome *chromosome)
 {
   for(int i=0;i< chromosome->chromoLen;i++)
     freeGroup(chromosome->(groups+i));
@@ -61,21 +27,7 @@ void freeChromosome(Chromosome *chromosome)
 }
 
 
-// ================================================================================
-//
-// name:          printChromosome
-//
-// function:      prints out a chromosome to a stream
-//
-// parameters:    chromosome.....chromosome to print
-//                out..........the stream to print the string to
-//
-// returns:       void
-//
-// ================================================================================
-
-
-void printChromosome(Chromosome *chromosome, FILE *out)
+void PrintChromosome(Chromosome *chromosome, FILE *out)
 {
   
   if (out==NULL)
@@ -92,19 +44,7 @@ void printChromosome(Chromosome *chromosome, FILE *out)
   return;
 }
 
-// ================================================================================
-//
-// name:          copyChromosome
-//
-// function:      copies a chromosome into another
-//
-// parameters:    src........group to copy
-//                dest.......group to be copied into 
-//
-// returns:       void
-//
-// ================================================================================
-void copyChromosome(Chromosome *src, Chromosome *dest)
+void CopyChromosome(Chromosome *src, Chromosome *dest)
 {
   
   dest->chromoLen = src->chromoLen;
@@ -124,19 +64,7 @@ void copyChromosome(Chromosome *src, Chromosome *dest)
   return;
 }
 
-// ================================================================================
-//
-// name:          addGrouptoChromosome
-//
-// function:      adds a new group to the chromosome
-//
-// parameters:    chromosome...chromosome that will include the group
-//                group........group to add
-//
-// returns:       void
-//
-// ================================================================================
-void addGrouptoChromosome(Chromosome *chromosome, Group *group)
+void AddGrouptoChromosome(Chromosome *chromosome, Group *group)
 {
   chromosome->groups.push_back(*group);
   chromosome->chromoLen = chromosome->chromoLen + 1;
@@ -144,19 +72,7 @@ void addGrouptoChromosome(Chromosome *chromosome, Group *group)
   return;
 }
 
-// ================================================================================
-//
-// name:          removeGroupFromChromosome
-//
-// function:      removes a group from the chromosome
-//
-// parameters:    chromosome...chromosome that will include the group
-//                group........group to remove
-//
-// returns:       void
-//
-// ================================================================================
-void removeGroupFromChromosome(Chromosome *chromosome, Group *group)
+void RemoveGroupFromChromosome(Chromosome *chromosome, Group *group)
 {
   
   for(int j=0;j<group->groupLen;j++)   
@@ -168,21 +84,10 @@ void removeGroupFromChromosome(Chromosome *chromosome, Group *group)
 
 }
 
-// ================================================================================
-//
-// name:          addEmptyGrouptoChromosome
-//
-// function:      adds a new group to the chromosome
-//
-// parameters:    chromosome...chromosome that will include the group
-//
-// returns:       void
-//
-// ================================================================================
-void addEmptyGrouptoChromosome(Chromosome *chromosome)
+void AddEmptyGrouptoChromosome(Chromosome *chromosome)
 {
-//  chromosome->groups.push_back(*group);
-//  chromosome->chromoLen = chromosome->chromoLen + 1;
+  //  chromosome->groups.push_back(*group);
+  //  chromosome->chromoLen = chromosome->chromoLen + 1;
   Group groupToAdd;
   groupToAdd.groupLen  = 0;
   groupToAdd.groupIdx  = chromosome->groups.size();

@@ -1,36 +1,8 @@
-// ################################################################################
-//
-// name:          replace.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       the definition of replacement replacing the worst portion of the
-//                original population and the divide and conquer function it uses
-//                to separate the worst
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include "population.h"
 #include "replace.h"
 #include "random.h"
 
-// ================================================================================
-//
-// name:          replaceTheWorst
-//
-// function:      performs the opposite to a truncation selection for replacement 
-//                (replacing the worst guys from the population by the offspring)
-//
-// parameters:    population...the population where to put the offspring
-//                parents......the offspring population
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int replaceWorst(Population *population, Population *offspring)
+int ReplaceWorst(Population *population, Population *offspring)
 {
   long i,j;
   long M,N,NM;
@@ -66,27 +38,8 @@ int replaceWorst(Population *population, Population *offspring)
   return 0;
 }
 
-// ================================================================================
-//
-// name:          divideWorst
-//
-// function:      do divide-and-conquer until the last M individuals (individuals
-//                [NM...N]) are worse or equal than the rest (of totally N
-//                individuals)
-//
-// parameters:    population...the population from which to separate the worst M
-//                left.........a pointer pointing to the left-most individual of
-//                             the currently processed part of the population
-//                right........a pointer pointing to the right-most individual of
-//                             the currently processed part of the population
-//                NM...........size of the population minus the number of 
-//                             individuals to separate (N-M)
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int divideWorst(Population *population, long left, long right, int n, long NM)
+int DivideWorst(Population *population, long left, long right, int n, long NM)
 {
   long l,r;
   float pivot;

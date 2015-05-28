@@ -1,16 +1,3 @@
-// ################################################################################
-//
-// name:          getFileArgs.cc      
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions for reading the input file, printing the description 
-//                of the parameters that can be processed, and the related
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -20,17 +7,10 @@
 #include "memalloc.h"
 #include "utils.h"
 
-// ---------------------------------------
-// some compilers do not know strdup, I do
-// ---------------------------------------
-
 #ifndef strdup
 #define strdup(s) (char*) strcpy((char*) Malloc((long)strlen(s)+1),s)
 #endif
 
-// -----------------------------------
-// the type description for parameters
-// -----------------------------------
 
 char *typeDesc[30] = 
         { "char", 
@@ -41,26 +21,12 @@ char *typeDesc[30] =
 	  "(int,int)*"
 	};
 
-// -------------
-// no comment...
-// -------------
 
 char *yesString = "Yes";
 char *noString = "No";
 
-// ================================================================================
-//
-// name:          yesNoDescriptor
-//
-// function:      returns "Yes" if input is true, "No" otherwise
-//
-// parameters:    i............a number determining what to return
-//
-// returns:       (char*) resulting string ("Yes"/"No")
-//
-// ================================================================================
 
-char *yesNoDescriptor(int i)
+char *YesNoDescriptor(int i)
 {
   if (i)
     return yesString;
@@ -68,24 +34,7 @@ char *yesNoDescriptor(int i)
     return noString;
 }
 
-// ================================================================================
-//
-// name:          getFirstString
-//
-// function:      gets a first string composed of letters or characters "-" and "_"
-//                from a current file position and stores it; also stores the first
-//                character of the remaining output; skips spaces at the beginning
-//                if needed
-//
-// parameters:    f............the pointer to input stream
-//                s............the pointer where to store the read string
-//                restC........the character following the string
-//
-// returns:       (int) 0 if end of file reached, non-zero otherwise
-//
-// ================================================================================
-
-int getFirstString(FILE *f, char *s, char *restC)
+int GetFirstString(FILE *f, char *s, char *restC)
 {
   register int i;
   char c;
@@ -116,23 +65,8 @@ int getFirstString(FILE *f, char *s, char *restC)
   return (!feof(f));
 }
 
-// ================================================================================
-//
-// name:          setParamValue
-//
-// function:      sets the value of a parameter from the file, the pointer in the
-//                file must be at the beginning of the value or spaces before it;
-//                if the pointer to the file is NULL, the value of a paramter
-//                is set to its default value
-//
-// parameters:    f............the pointer to the input stream
-//                param........the pointer to the parameter to set
-//
-// returns:       (int) 0 (if everything went fine)
-//
-// ================================================================================
 
-int setParamValue(FILE *f, ParamStruct *param)
+int SetParamValue(FILE *f, ParamStruct *param)
 {
   char s[100];
   int iTmp;
@@ -218,26 +152,11 @@ int setParamValue(FILE *f, ParamStruct *param)
       exit(-2);
     }
 
-  // get back
-
   return 0;
 }
 
-// ================================================================================
-//
-// name:          getParamsFromFile
-//
-// function:      reads the values of parameters from a file
-//
-// parameters:    filename.....the name of an input file
-//                params.......the array of parameters to be set (either from the
-//                             file or default values
-//
-// returns:       (int) 0 (if everything went fine)
-//
-// ================================================================================
 
-int getParamsFromFile(char *filename, ParamStruct params[])
+int GetParamsFromFile(char *filename, ParamStruct params[])
 {
   FILE *f=NULL;
   char s[200];
@@ -326,29 +245,13 @@ int getParamsFromFile(char *filename, ParamStruct params[])
   if (!defined[i])
     setParamValue(NULL,&(params[i]));
 
-  // free allocated memory
-
   free(defined);
 
-  // get back
 
   return 0;
 }
 
-// ================================================================================
-//
-// name:          printParamsDescription
-//
-// function:      prints out the description of parameters that can be specified
-//
-// parameters:    out..........where to print the description
-//                params.......the array of parameters to print the description of
-//
-// returns:       (int) 0 (if everything went fine)
-//
-// ================================================================================
-
-int printParamsDescription(FILE *out, ParamStruct params[])
+int PrintParamsDescription(FILE *out, ParamStruct params[])
 {
   int i=0;
 
@@ -370,25 +273,10 @@ int printParamsDescription(FILE *out, ParamStruct params[])
       i++;
     }
 
-  // get back
-
   return 0;
 }
 
-// ================================================================================
-//
-// name:          printParamsDescription
-//
-// function:      prints out the values of the parameters
-//
-// parameters:    out..........where to print the values to
-//                params.......the array of parameters to print the values of
-//
-// returns:       (int) 0 (if everything went fine)
-//
-// ================================================================================
-
-int printParamValues(FILE *out, ParamStruct params[])
+int PrintParamValues(FILE *out, ParamStruct params[])
 {
 
   int i=0;
@@ -459,7 +347,5 @@ int printParamValues(FILE *out, ParamStruct params[])
       i++;
     }
 
-  // get back
-  
   return 0;
 }

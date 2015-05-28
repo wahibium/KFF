@@ -1,35 +1,8 @@
-// ################################################################################
-//
-// name:          stack.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       the definition of a class IntStack (a stack for int)
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "stack.h"
 #include "memalloc.h"
-
-// ================================================================================
-//
-// name:          IntStack::Intstack
-//
-// function:      the constructor for the class Intstack; allocates the memory for 
-//                a maximal number of integers to store
-//
-// parameters:    max..........a maximal number of integers to store
-//
-// returns:       (none)
-//
-// last modified: February 1999
-//
-// ================================================================================
 
 IntStack::IntStack(int max)
 {
@@ -39,42 +12,13 @@ IntStack::IntStack(int max)
   s = (int*) Calloc(max,sizeof(int));
 }
 
-// ================================================================================
-//
-// name:          IntStack::~Intstack
-//
-// function:      the destructor for the class Intstack; frees the memory allocted 
-//                for the stored integers
-//
-// parameters:    (none)
-//
-// returns:       (none)
-//
-// last modified: February 1999
-//
-// ================================================================================
 
 IntStack::~IntStack()
 {
   Free(s);
 }
 
-// ================================================================================
-//
-// name:          IntStack::push
-//
-// function:      stores an integer on the top of the stack, crashes when the stack
-//                is full (with exit code -1)
-//
-// parameters:    x............a number to store
-//
-// returns:       (int) the stored number
-//
-// last modified: February 1999
-//
-// ================================================================================
-
-int IntStack::push(int x)
+int IntStack::Push(int x)
 {
   if (size>=maxSize)
     {
@@ -85,22 +29,7 @@ int IntStack::push(int x)
   return s[size++]=x;
 }
 
-// ================================================================================
-//
-// name:          IntStack::pop
-//
-// function:      pops the integer on the top of the stack and gets rid of it; 
-//                crashes when the stack is empty (with exit code -1)
-//
-// parameters:    (none)
-//
-// returns:       (int) the number from the top of the stack
-//
-// last modified: February 1999
-//
-// ================================================================================
-
-int IntStack::pop()
+int IntStack::Pop()
 {
   if (size>0)
     return s[--size];
@@ -113,78 +42,22 @@ int IntStack::pop()
   return 0;
 }
 
-// ================================================================================
-//
-// name:          IntStack::empty
-//
-// function:      checks whether the stack is empty
-//
-// parameters:    (none)
-//
-// returns:       (int) true if the stack is empty
-//
-// last modified: February 1999
-//
-// ================================================================================
-
-int IntStack::empty()
+int IntStack::Empty()
 {
   return (size==0);
 }
 
-// ================================================================================
-//
-// name:          IntStack::notEmpty
-//
-// function:      checks whether the stack is not empty
-//
-// parameters:    (none)
-//
-// returns:       (int) true if the stack is not empty
-//
-// last modified: February 1999
-//
-// ================================================================================
-
-int IntStack::notEmpty()
+int IntStack::NotEmpty()
 {
   return size;
 }
 
-// ================================================================================
-//
-// name:          IntStack::full
-//
-// function:      checks whether the stack is full
-//
-// parameters:    (none)
-//
-// returns:       (int) true if the stack is full
-//
-// last modified: February 1999
-//
-// ================================================================================
-
-int IntStack::full()
+int IntStack::Full()
 {
   return (size==maxSize);
 }
 
-// ================================================================================
-//
-// name:          IntStack::getSize
-//
-// function:      checks the size of the stack
-//
-// parameters:    (none)
-//
-// returns:       (int) the current size of the stack
-//
-// last modified: February 1999
-//
-// ================================================================================
-
-int IntStack::getSize()
+int IntStack::GetSize()
 {
   return size;
 }

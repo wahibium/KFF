@@ -1,37 +1,11 @@
-// ################################################################################
-//
-// name:          group.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions for manipulation with the groups in chromosome (each group represents a new kernel)
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include <algorithm>
 #include "group.h"
 #include "memalloc.h"
 #include "utils.h"
 
-// ================================================================================
-//
-// name:          initGroup
-//
-// function:      initializes a group, sets its size and set the values.
-//
-// parameters:    group.................group to initialize
-//                len...................the size of the group
-//                originalKernelsIDs....the IDs of the original kernel in the group
-//                id....................id to assign to the group
-//
-// returns:       void
-//
-// ================================================================================
 
-void initGroup(Group* group, int len, int *originalKernelsIDs, int id)
+void InitGroup(Group* group, int len, int *originalKernelsIDs, int id)
 {
   group->groupLen = len;
   group->groupIdx = id;
@@ -40,20 +14,8 @@ void initGroup(Group* group, int len, int *originalKernelsIDs, int id)
       group->groupKernelsIDs.push_back(*(originalKernelsIDs+i));
   return;
 }
-  
-// ================================================================================
-//
-// name:          freeGroup
-//
-// function:      frees the memory used by the group
-//
-// parameters:    group........group to free
-//
-// returns:       void
-//
-// ================================================================================
 
-void freeGroup(Group* group)
+void FreeGroup(Group* group)
 {
   
   //Free(group->groupKernelsIDs);
@@ -62,22 +24,7 @@ void freeGroup(Group* group)
   return;
 }
 
-
-// ================================================================================
-//
-// name:          printGroup
-//
-// function:      prints out a group to a stream
-//
-// parameters:    group........group to print
-//                out..........the stream to print the group to
-//
-// returns:       void
-//
-// ================================================================================
-
-
-void printGroup(Group* group, FILE *out)
+void PrintGroup(Group* group, FILE *out)
 {
   
   if (out==NULL)
@@ -92,19 +39,7 @@ void printGroup(Group* group, FILE *out)
   return;
 }
 
-// ================================================================================
-//
-// name:          copyGroup
-//
-// function:      copies a group into another
-//
-// parameters:    src........group to copy
-//                dest.......group to be copied into 
-//
-// returns:       void
-//
-// ================================================================================
-void copyGroup(Group *src, Group *dest)
+void CopyGroup(Group *src, Group *dest)
 {
   
   dest->groupLen = src->groupLen;
@@ -117,19 +52,7 @@ void copyGroup(Group *src, Group *dest)
   return;
 }
 
-// ================================================================================
-//
-// name:          addOriginalKernelToGroup
-//
-// function:      add an original kernel to a group
-//
-// parameters:    group........group to which the original kernel is added
-//                originalKernelId.......ID of original kernel
-//
-// returns:       void
-//
-// ================================================================================
-void addOriginalKernelToGroup(Group* group, int originalKernelId)
+void AddOriginalKernelToGroup(Group* group, int originalKernelId)
 {
 
     group->groupKernelsIDs.push_back(originalKernelId);
@@ -138,19 +61,7 @@ void addOriginalKernelToGroup(Group* group, int originalKernelId)
 
 }
 
-// ================================================================================
-//
-// name:          removeOriginalKernelFromGroup
-//
-// function:      remove an original kernel from a group
-//
-// parameters:    group........group from which the original kernel is removed
-//                originalKernelId.......ID of original kernel
-//
-// returns:       void
-//
-// ================================================================================
-void removeOriginalKernelFromGroup(Group* group, int originalKernelId)
+void RemoveOriginalKernelFromGroup(Group* group, int originalKernelId)
 {
 
     group->groupKernelsIDs.erase(std::remove(group->groupKernelsIDs.begin(),group->groupKernelsIDs.end(),originalKernelId),group->groupKernelsIDs.end());
@@ -158,40 +69,16 @@ void removeOriginalKernelFromGroup(Group* group, int originalKernelId)
     return;
 }
 
-// ================================================================================
-//
-// name:          isFeasibleToAddOriginalKernel
-//
-// function:      checks if an original kernel can be added to the group
-//
-// parameters:    group........group to check
-//                originalKernelId.......ID of original kernel to be checked
-//
-// returns:       bool
-//
-// ================================================================================
-bool isFeasibleToAddOriginalKernel(Group* group, int originalKernelId)
+/*
+bool IsFeasibleToAddOriginalKernel(Group* group, int originalKernelId)
 {
 
   // make sure there are sharing sets with at least one of the original kernels
-
-
   return true;
 }
+*/
 
-// ================================================================================
-//
-// name:          isOriginalKernelInGroup
-//
-// function:      checks if an original kernel is in a group
-//
-// parameters:    group........group to check
-//                originalKernelId.......ID of original kernel to be checked
-//
-// returns:       bool
-//
-// ================================================================================
-bool isOriginalKernelInGroup(Group* group, int originalKernelId)
+bool IsOriginalKernelInGroup(Group* group, int originalKernelId)
 {
 
   vector<int>::iterator it;
@@ -203,20 +90,7 @@ bool isOriginalKernelInGroup(Group* group, int originalKernelId)
   
 }
 
-// ================================================================================
-//
-// name:          isTwoGroupsIntersecting
-//
-// function:      checks two group have at least one OriginalKernel repeated in both
-//
-// parameters:    groupOne.....................group one to check
-//                groupTwo.....................group two to check
-//                Group* intersectionResult....group holding result of intersection
-//
-// returns:       bool
-//
-// ================================================================================
-bool isTwoGroupsIntersecting(Group* groupOne, Group* groupTwo, Group* intersectionResult)
+bool IsTwoGroupsIntersecting(Group* groupOne, Group* groupTwo, Group* intersectionResult)
 {
   vector<int>::iterator it;
   it = set_intersection (groupOne, groupOne + groupOne->groupLen, groupTwo, groupTwo + groupTwo->groupLen, v.begin());                                               

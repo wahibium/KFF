@@ -3,6 +3,6 @@
 
 #include <math.h>
 
-long round(float x);
+long Round(float x);
 
 #endif

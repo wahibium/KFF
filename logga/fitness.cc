@@ -1,18 +1,3 @@
-// ################################################################################
-//
-// name:          fitness.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       the definition of fitness functions; in order to add a fitness  
-//                one has to add it here (plus the definition in the header file
-//                fitness.h); see documentation or the instructions below
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
-
 // ================================================================================
 // ================================================================================
 //
@@ -71,83 +56,14 @@ static Fitness fitnessDesc[numFitness] = {
   {"Complex Model",&complexmodel,&bestSolution,NULL,NULL},
 };
 
-// ------------------
-// the fitness in use
-// ------------------
 
 Fitness *fitness;
 
-// ---------------------------
-// the number of fitness calls
-// ---------------------------
 
 long   fitnessCalls_;
 
-// ================================================================================
-//
-// name:          simplemodel
-//
-// function:      computes the expected runtime by removing the measured memory access time
-//
-// parameters:    chromosome............ solution to be evaluated
-//
-// returns:       (float) runtime in sec
-//
-// ================================================================================
 
-double simplemodel(Chromosome *chromosome)
-{
-  double f = 1.0;
-  return f;
-}
-
-// ================================================================================
-//
-// name:          complexmodel
-//
-// function:      computes the expected runtime according to model extending Lau. et al
-//
-// parameters:    chromosome............ solution to be evaluated
-//
-// returns:       (float) runtime in sec
-//
-// ================================================================================
-
-double complexmodel(Chromosome *chromosome)
-{
-  double f = 1.0;
-  return f;
-}
-
-// ================================================================================
-//
-// name:          roofline
-//
-// function:      computes the expected runtime according to the Roofline model
-//
-// parameters:    chromosome............ solution to be evaluated
-//
-// returns:       (float) runtime in sec
-//
-// ================================================================================
-double roofline(Chromosome *chromosome)
-{
-   double f= 1.0;
-   return f; 
-}
-// ================================================================================
-//
-// name:          bestSolution
-//
-// function:      checks whether input is the best known solution
-//
-// parameters:    chromosome............ solution to be evaluated
-//
-// returns:       (char) non-zero if best solution, 0 otherwise
-//
-// ================================================================================
-
-char bestSolution(Chromosome *chromosome)
+char BestSolution(Chromosome *chromosome)
 {
   register int i;
 
@@ -156,26 +72,7 @@ char bestSolution(Chromosome *chromosome)
   return (i==n);
 }
 
-
-
-// ================================================================================
-// ================================================================================
-// ================================================================================
-
-
-// ================================================================================
-//
-// name:          setFitness
-//
-// function:      sets the tested function according to its ordering number
-//
-// parameters:    n............the number of a fitness to use
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int setFitness(int n)
+int SetFitness(int n)
 {
   if ((n>=0) && (n<numFitness))
     fitness = &(fitnessDesc[n]);
@@ -188,36 +85,14 @@ int setFitness(int n)
   return 0;
 }
 
-// ================================================================================
-//
-// name:          getFitnessDesc
-//
-// function:      gets a string description of a particular function
-//
-// parameters:    n............the number of a fitness to get the description of
-//
-// returns:       (char*) the string description of the function
-//
-// ================================================================================
 
-char *getFitnessDesc(int n)
+char* GetFitnessDesc(int n)
 {
   return fitnessDesc[n].description;
 }
 
-// ================================================================================
-//
-// name:          initializeFitness
-//
-// function:      calls an init method of chosen fitness (if any)
-//
-// parameters:    ggaParams....the parameters passed to the GGA
-//
-// returns:       (int) return value of the called method or 0
-//
-// ================================================================================
 
-int initializeFitness(GGAParams *ggaParams)
+int InitializeFitness(GGAParams *ggaParams)
 {
   if (fitness->init)
     return fitness->init(ggaParams);
@@ -225,19 +100,7 @@ int initializeFitness(GGAParams *ggaParams)
   return 0;
 }
 
-// ================================================================================
-//
-// name:          doneFitness
-//
-// function:      calls a done method of chosen fitness (if any)
-//
-// parameters:    boaParams....the parameters passed to the BOA
-//
-// returns:       (int) return value of the called method or 0
-//
-// ================================================================================
-
-int doneFitness(GGAParams *ggaParams)
+int DoneFitness(GGAParams *ggaParams)
 {
   if (fitness->done)
     return fitness->done(ggaParams);
@@ -245,88 +108,36 @@ int doneFitness(GGAParams *ggaParams)
   return 0;
 }
 
-// ================================================================================
-//
-// name:          getFitnessValue
-//
-// function:      evaluates the fitness for an input string
-//
-// parameters:    chromosome............ solution to be evaluated
-//
-// returns:       (double) the value of chosen fitness for the input string
-//
-// ================================================================================
-
-float getFitnessValue(Chromosome *chromosome) 
+float GetFitnessValue(Chromosome *chromosome) 
 {
   fitnessCalled();
   return fitness->fitness(x,n);
 }
 
-// ================================================================================
-//
-// name:          isBestDefined
-//
-// function:      checks whether the proposition identifying the optimal strings is
-//                defined for a chosen function
-//
-// parameters:    (none)
-//
-// returns:       (int) non-zero if the proposition function defined, 0 otherwise
-//
-// ================================================================================
-
-int isBestDefined()
+int IsBestDefined()
 {
   return (int) (fitness->isBest!=NULL);
 }
 
-// ================================================================================
-//
-// name:          isOptimal
-//
-// function:      checks whether the input string is optimal (assuming the 
-//                proposition function is defined)
-//
-// parameters:    x............the string
-//                n............the length of the string
-//
-// returns:       (int) the value of the proposition
-//
-// ================================================================================
 
-int isOptimal(char *x, int n) 
+int IsOptimal(char *x, int n) 
 {
  return fitness->isBest(x,n);
 }
 
-// ================================================================================
-//
-// name:          resetFitnessCalls
-//
-// function:      resets the number of fitness calls (sets it to 0)
-//
-// parameters:    (none)
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int resetFitnessCalls(void)
+int ResetFitnessCalls(void)
 {
   return (int) (fitnessCalls_=0);
 }
 
-// =============================================================
 
-long fitnessCalled(void)
+long FitnessCalled(void)
 {
   return fitnessCalls_++;
 }
 
-// =============================================================
 
-long getFitnessCalls(void)
+long GetFitnessCalls(void)
 {
   return fitnessCalls_;
 }

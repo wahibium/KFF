@@ -4,6 +4,6 @@
 
 #include "getFileArgs.h"
 
-int help(char what, ParamStruct *params);
+int Help(char what, ParamStruct *params);
 
 #endif

@@ -6,8 +6,8 @@ struct Node {
   node *next;
 };
 
-void addNode(Node **list, int ID);
+void AddNode(Node **list, int ID);
 
-int removeNode(Node **list, int ID);
+int RemoveNode(Node **list, int ID);
 
 #endif

@@ -22,8 +22,8 @@
   //LabeledTreeNode *a;
   //LabeledTreeNode *b;
 //};
-void applyCrossover(Population *parents, Population *offspring, GGAParams *ggaParams);
-void applyMutation(Population *parents, Population *offspring, GGAParams *ggaParams);
+void ApplyCrossover(Population *parents, Population *offspring, GGAParams *ggaParams);
+//void ApplyMutation(Population *parents, Population *offspring, GGAParams *ggaParams);
 //int resetOperator(Operator *x);
 //int updateBestOperator(Operator *best, Operator *x);
 //int updateBestNodeOperator(Operator *x, FrequencyDecisionGraph *t, MergeOperator *merge, int numMerges, int node, int n);

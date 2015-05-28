@@ -1,15 +1,3 @@
-// ################################################################################
-//
-// name:          graph.cc      
-//
-// author:        Mohamed Wahib
-//
-// purpose:       the definition of classes Adjlist_node, Adjlist and Graph
-//                for manipulation with graphs
-//
-// last modified: Feb 2014
-//
-// ################################################################################
 #include <string.h>
 #include <stdlib.h>
 #include "graph.h"

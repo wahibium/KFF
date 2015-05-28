@@ -16,9 +16,9 @@ struct Adjlist_node
     public:
     Adjlist_node();
     Adjlist_node(int v);
-    int getID(){return ID;}
-    Adjlist_node * getNext(){return next;}
-    void setNext(Adjlist_node * nxtPtr){next=nxtPtr;}
+    int GetID(){return ID;}
+    Adjlist_node * GetNext(){return next;}
+    void SetNext(Adjlist_node * nxtPtr){next=nxtPtr;}
 
 };
  
@@ -37,11 +37,11 @@ class Graph
     int numVertices;         /*Number of vertices*/
     Adjlist *adjListArr;     /*Adjacency lists' array*/
     public:
-    Adjlist_node* addNode(int v);
+    Adjlist_node* AddNode(int v);
     Graph(int n);
     ~Graph();
-    void addEdge(int src, int dest);
-    void displayGraph();
+    void AddEdge(int src, int dest);
+    void DisplayGraph();
 
 };
  

@@ -1,16 +1,3 @@
-// ################################################################################
-//
-// name:          gga.cc      
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions for the initialization of the GGA, the GGA itself and 
-//                a done method for the GGA
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,9 +11,7 @@
 #include "memalloc.h"
 #include "random.h"
 
-// --------------------
 // various output files
-// --------------------
 
 FILE *logFile;
 FILE *fitnessFile;
@@ -34,9 +19,8 @@ FILE *modelFile;
 
 BasicStatistics populationStatistics;
 
-// --------------------------------------------------------
+
 // the description of termination criteria that are checked
-// --------------------------------------------------------
 
 char *terminationReasonDescription[5] = {
 "No reason",
@@ -45,18 +29,6 @@ char *terminationReasonDescription[5] = {
 "Proportion of optima in a population reached the threshold",
 "Optimum has been found"};
 
-
-// ================================================================================
-//
-// name:          GGA
-//
-// function:      the kernel of the GGA (runs the GGA for a chosen problem)
-//
-// parameters:    ggaParams....the parameters sent to the GAA
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
 int GGA(GGAParams *ggaParams)
 {
@@ -128,25 +100,11 @@ int GGA(GGAParams *ggaParams)
   finalStatistics(stdout,terminationReasonDescription[terminationReason],&populationStatistics);
   finalStatistics(logFile,terminationReasonDescription[terminationReason],&populationStatistics);
   
-
-  // get back
   return 0;
 }
 
-// ================================================================================
-//
-// name:          terminationCriteria
-//
-// function:      checks whether some of the termination criteria wasn't matched
-//                and returns the number of the criterion that has been met or 0
-//
-// parameters:    ggaParams....the parameters sent to the GGA
-//
-// returns:       (int) the number of a met criterion or 0 if none has been met
-//
-// ================================================================================
 
-int terminationCriteria(GGAParams *ggaParams)
+int TerminationCriteria(GGAParams *ggaParams)
 {
   int result;
 
@@ -183,51 +141,22 @@ int terminationCriteria(GGAParams *ggaParams)
   if ((!result)&&(ggaParams->maxGenerations>=0))
     result = (populationStatistics.generation>=ggaParams->maxGenerations)? MAXGENERATIONS_TERMINATION:0;
 
-  // get back
   return result;
 }
 
-// ================================================================================
-//
-// name:          generateOffspring
-//
-// function:      generates offspring in the GGA (select candidates from population, and then uses them to generate offspring) 
-//
-// parameters:    t............the number of current generation
-//                parents......the selected set of promising solutions
-//                offspring....the resulting population of offspring
-//                ggaParams....the parameters sent to the GGA
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int generateOffspring(long iteration, Population *parents, Population *offspring, GGAParams *ggaParams)
+/*
+int GenerateOffspring(long iteration, Population *parents, Population *offspring, GGAParams *ggaParams)
 {
 
-  // apply cross over
-  
+  // apply cross over  
 
   // apply mutation at random
 
-
-
   return 0;
 }
+*/
 
-// ================================================================================
-//
-// name:          pause
-//
-// function:      waits for enter key if required
-//
-// parameters:    (none)
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int pause(GGAParams *ggaParams)
+int Pause(GGAParams *ggaParams)
 {
   if (ggaParams->pause)
     {
@@ -238,19 +167,8 @@ int pause(GGAParams *ggaParams)
   return 0;
 }
 
-// ================================================================================
-//
-// name:          terminate
-//
-// function:      gets back to normal what was changed in initialization of the GGA
-//
-// parameters:    ggaParams....the parameters sent to the GGA
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int terminate(GGAParams *ggaParams)
+int Terminate(GGAParams *ggaParams)
 {
   // get rid of the metric
 
@@ -274,59 +192,22 @@ int terminate(GGAParams *ggaParams)
  
  if (modelFile)
     fclose(modelFile);
-   
-  // get back
 
   return 0;  
 }
 
-// ================================================================================
-//
-// name:          getLogFile
-//
-// function:      returns a pointer to the log file strea
-//
-// parameters:    (none)
-//
-// returns:       (FILE*) a pointer to the log file stream
-//
-// ================================================================================
 
-FILE *getLogFile()
+FILE *GetLogFile()
 {
   return logFile;
 }
 
-// ================================================================================
-//
-// name:          getModelFile
-//
-// function:      returns a pointer to the model file stream
-//
-// parameters:    (none)
-//
-// returns:       (FILE*) a pointer to the model file stream
-//
-// ================================================================================
-
-FILE *getModelFile()
+FILE *GetModelFile()
 {
   return modelFile;
 }
 
-// ================================================================================
-//
-// name:          getFitnessFile
-//
-// function:      returns a pointer to the fitness file stream
-//
-// parameters:    (none)
-//
-// returns:       (FILE*) a pointer to the fitness file stream
-//
-// ================================================================================
-
-FILE *getFitnessFile()
+FILE *GetFitnessFile()
 {
   return fitnessFile;
 }

@@ -3,7 +3,7 @@
 
 #include "getFileArgs.h"
 
-int startUp(int argc, char **argv, ParamStruct *params);
-char *getParamFilename();
+int StartUp(int argc, char **argv, ParamStruct *params);
+char *GetParamFilename();
 
 #endif

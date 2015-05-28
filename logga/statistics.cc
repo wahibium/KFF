@@ -1,16 +1,3 @@
-// ################################################################################
-//
-// name:          statistics.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions that compute and print out the statistics during and
-//                after the run
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,19 +10,8 @@
 #include "graph.h"
 #include "frequencyDecisionGraph.h"
 
-// ================================================================================
-//
-// name:          initializeBasicStatistics
-//
-// function:      initializes basic statistics stuff
-//
-// parameters:    boaParams....the parameters sent to the BOA
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int intializeBasicStatistics(BasicStatistics *statistics, BoaParams *boaParams)
+int IntializeBasicStatistics(BasicStatistics *statistics, BoaParams *boaParams)
 {
   // allocate memory for univariate frequencies
 
@@ -46,46 +22,17 @@ int intializeBasicStatistics(BasicStatistics *statistics, BoaParams *boaParams)
   return 0;
 }
 
-// ================================================================================
-//
-// name:          doneBasicStatistics
-//
-// function:      done method for basic statistics
-//
-// parameters:    (none)
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int doneBasicStatistics(BasicStatistics *statistics)
+int DoneBasicStatistics(BasicStatistics *statistics)
 {
   // free the memory used by the univariate frequencies
 
-  Free(statistics->p1);
-
-  // get back
+  Free(statistics->p1)
 
   return 0;
 }
 
-// ================================================================================
-//
-// name:          computeBasicStatistics
-//
-// function:      computes some basic statistics (on fitness and so) and sets some
-//                variables required for printing this information out in the
-//                future
-//
-// parameters:    t............number of generation
-//                population...a current population
-//                boaParams....the parameters sent to the BOA
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int computeBasicStatistics(BasicStatistics *statistics, long t, Population *population, BoaParams *boaParams)
+int ComputeBasicStatistics(BasicStatistics *statistics, long t, Population *population, BoaParams *boaParams)
 {
   long i;
 
@@ -132,24 +79,12 @@ int computeBasicStatistics(BasicStatistics *statistics, long t, Population *popu
   if (isBestDefined())
     statistics->bestX = population->x[statistics->max];
 
-  // get back
 
   return 0;
 }
 
-// ================================================================================
-//
-// name:          generationStatistics
-//
-// function:      prints out various statistics
-//
-// parameters:    out..........output stream
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int generationStatistics(FILE *out, BasicStatistics *statistics)
+int GenerationStatistics(FILE *out, BasicStatistics *statistics)
 {
   // output not null?
 
@@ -174,24 +109,11 @@ int generationStatistics(FILE *out, BasicStatistics *statistics)
     fprintf(out,"Statistic not available.");
   fprintf(out,"\n");
 
-  // get back
-
   return 0;
 }
 
-// ================================================================================
-//
-// name:          fitnessStatistics
-//
-// function:      prints out the statistics on fitness
-//
-// parameters:    out..........output stream
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int fitnessStatistics(FILE *out, BasicStatistics *statistics)
+int FitnessStatistics(FILE *out, BasicStatistics *statistics)
 {
   // output not null?
 
@@ -202,25 +124,10 @@ int fitnessStatistics(FILE *out, BasicStatistics *statistics)
 
   fprintf(out,"%3lu %7lu %10f %10f %10f\n",statistics->generation,getFitnessCalls(),statistics->maxF,statistics->avgF,statistics->minF);
 
-  // get back
-
   return 0;
 }
 
-// ================================================================================
-//
-// name:          finalStatistics
-//
-// function:      prints out statistics (called after the run is over)
-//
-// parameters:    out...........output stream
-//                termination...the reason for terminating the algorithm (string)
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int finalStatistics(FILE *out, char *termination, BasicStatistics *statistics)
+int FinalStatistics(FILE *out, char *termination, BasicStatistics *statistics)
 {
   // is output stream null?
 
@@ -247,26 +154,11 @@ int finalStatistics(FILE *out, char *termination, BasicStatistics *statistics)
     fprintf(out,"Statistic not available.");
   fprintf(out,"\n\nThe End.\n");
 
-  // get back
 
   return 0;
 }
 
-// ================================================================================
-//
-// name:          printModel
-//
-// function:      prints out the constructed model (called each generation)
-//
-// parameters:    out..........output stream
-//                t............number of generation
-//                G............the constructed network
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int printModel(FILE *out, long t, AcyclicOrientedGraph *G, FrequencyDecisionGraph **T)
+int PrintModel(FILE *out, long t, AcyclicOrientedGraph *G, FrequencyDecisionGraph **T)
 {
   int i;
 
@@ -293,24 +185,8 @@ int printModel(FILE *out, long t, AcyclicOrientedGraph *G, FrequencyDecisionGrap
   return 0;
 }
 
-// ================================================================================
-//
-// name:          printGuidance
-//
-// function:      prints out a population bias (where each bit is biased) according
-//                to a threshold ("0" if p1<treshold, "1" if p1>1-treshold, else 
-//                ".")
-//
-// parameters:    out..........output stream
-//                p1...........univariate frequencies for 1's
-//                n............string length
-//                threshold....threshold for bias (closer than that is biased)
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
-int printGuidance(FILE *out, float *p1, int n, float threshold)
+int PrintGuidance(FILE *out, float *p1, int n, float threshold)
 {
   int k;
   float threshold1;

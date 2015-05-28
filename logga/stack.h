@@ -14,13 +14,13 @@ class IntStack {
   IntStack(int max);
   ~IntStack();
 
-  int push(int x);
-  int pop();
+  int Push(int x);
+  int Pop();
 
-  int empty();
-  int notEmpty();
-  int full();
-  int getSize();
+  int Empty();
+  int NotEmpty();
+  int Full();
+  int GetSize();
 };
 
 

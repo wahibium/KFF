@@ -1,35 +1,8 @@
-// ################################################################################
-//
-// name:          select.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       the definition of truncation selection and the divide and conquer
-//                function it uses to separate the best
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include "population.h"
 #include "select.h"
 #include "random.h"
 
-// ================================================================================
-//
-// name:          selectTheBest
-//
-// function:      performs tournament selection (realizing tournaments on the guys)
-//
-// parameters:    population...the population where to select from
-//                parents......the population where to put the selected to
-//                params.......the parameters passed to the GGA
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-int selectTheBest(Population *population, Population *parents, GGAParams *params)
+int SelectTheBest(Population *population, Population *parents, GGAParams *params)
 {
   register long i,j;
   long N;
@@ -65,8 +38,6 @@ int selectTheBest(Population *population, Population *parents, GGAParams *params
       
       copyIndividual(parents,i,population->x[picked],population->f[picked]);
     }
-
-  // get back
 
   return 0;
 }

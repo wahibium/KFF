@@ -39,14 +39,14 @@ typedef struct {
 
 
 int GGA(Params *params);
-int terminationCriteria(GGAParams *params);
-int selection(GGAParams *params);
-int generateOffspring(Population *parents, Population *offspring, GGAParams *params);
-int pause(GGAParams *params);
-int terminate(GGAParams *params);
+int TerminationCriteria(GGAParams *params);
+int Selection(GGAParams *params);
+int GenerateOffspring(Population *parents, Population *offspring, GGAParams *params);
+int Pause(GGAParams *params);
+int Terminate(GGAParams *params);
 
-FILE *getLogFile();
-FILE *getModelFile();
-FILE *getFitnessFile();
+FILE *GetLogFile();
+FILE *GetModelFile();
+FILE *GetFitnessFile();
 
 #endif

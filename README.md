@@ -7,9 +7,9 @@
 
 author:   Mohamed Wahib
 
-version:  0.1
+version:  0.1 Alpha
 
-released: Nov 2014
+released: May 2015
 
 license:  MIT License
 
@@ -21,14 +21,16 @@ The project includes the following components:
 
 1- LOGGA: a grouped genetic algorithm, which searches for optimal kernel fissions/fusions that would generate the ideal data reuse for the exposed locality.
 
-2- Metadata Gatherer: a set of tools to gather metadata about the performance and characteristics of the original program.
+2- Translator: a program for translating the original CUDA code to new CUDA code for which the kernel transformation was applied. The translator uses ROSE compiler to parse, change and unparse the original source code.
 
-3- DDG and OEG Generators: a tools applying heuristics to extract the Data dependency Graph and Order-Execution-Graphs from the source code. The tools also allow amending the graphs.
+3- Metadata Gatherer: a set of tools to gather metadata about the performance and characteristics of the original program.
 
-4- Translator: a program for translating the original CUDA code to new CUDA code for which the kernel transformation was applied. The translator uses ROSE compiler to parse, change and unparse the original source code.
+4- DDG and OEG Generators: a tools applying heuristics to extract the Data dependency Graph and Order-Execution-Graphs from the source code. The tools also allow amending the graphs.
 
-The components mentioned above will be released in the stated order after testing and verifying each component individually. Each component is designed to be used as a standalone tool or as part of the end-to-end framework
 
+
+The components mentioned above will be released in the stated order after testing and verifying each component individually. Each component is designed to be used as a standalone tool or as part of the end-to-end framework.
+>>> Latest component --- LOGGA --- 
 
 
 --------------------------------------------------
@@ -49,11 +51,25 @@ encourage you to read the report in order to take advantage of the
 features of the implementation and understand what is actually going
 on when you see all the outputs. 
 
+2. External Dependencies
+----------------
 
-2. COMPILATION
+KFF depends on the following external software:
+
+* [GNU GCC C/C++ compiler](http://gcc.gnu.org/)
+* [ROSE compiler infrastructure](http://www.rosecompiler.org/)
+
+In addition, the following platform-specific tools and libraries are
+required when using the respective platform:
+
+* [NVIDIA CUDA toolkit and SDK for using NVIDIA GPUs](http://developer.nvidia.com/cuda-downloads) (6.5 tested)
+* MPI for multi-node parallel execution
+  ([OpenMPI v1.4.2](http://www.open-mpi.org/) tested)
+
+3. COMPILATION
 ---------------
 
-In Makefile, change the following two lines:
+For compiling LOGGA, in Makefile, change the following two lines:
 
 1) Line 35 - In the statement CC = CC, the CC on the right-hand side should be
 changed to the name of a preferred C++ compiler on your machine. With
@@ -74,7 +90,7 @@ After compiling the source codes, your directory should contain an
 executable file; run.
 
 
-3. COMMAND LINE PARAMETERS
+4. COMMAND LINE PARAMETERS
 ---------------------------
 
 There are three parameters that can be passed to the program:
@@ -84,16 +100,16 @@ There are three parameters that can be passed to the program:
 -paramDescription -> print out the description of input file parameters
 
 
-4. EXAMPLE INPUT FILES
+5. EXAMPLE INPUT FILES
 -----------------------
 
-Example input files are located in a sub-directory examples. Files with
+Example input programs are located in a sub-directory examples. In "logga" diretory, files with
 the names starting with input are input files and files starting with
 output are output files produced with the parameters specified in the
-corresponding input files.
+corresponding input files. The "applications" directory include example applications used for in the end-to-end framework
 
 
-4. COMMENTS
+5. COMMENTS
 ------------
 
 This code is distributed for academic purposes with absolutely no

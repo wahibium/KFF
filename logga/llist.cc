@@ -1,6 +1,6 @@
 #include "llist.h"
 
-void addNode(Node **list, int ID)
+void AddNode(Node **list, int ID)
 {
 	Node *p = new Node;
 	p->ID   = ID;
@@ -8,7 +8,7 @@ void addNode(Node **list, int ID)
 	list    = p;
 }
 
-int removeNode(Node **list, int ID)
+int RemoveNode(Node **list, int ID)
 {
 	Node *current = *list;
 	Node *previous = *list;
@@ -29,9 +29,5 @@ int removeNode(Node **list, int ID)
 
 	}
 
-
 	return 0;
-
-
-
 }

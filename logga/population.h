@@ -16,15 +16,15 @@ class Population {
   public:
   Population(int len);
   ~Population();
-  void printPopulation();
-  void generatePopulation();
-  void evaluatePopulation();
-  int addChromosome(long where, Chromosome addedChromosome);  
-  double evaluateChromosome(int Idx);
-  bool isChromosomeFeasible(int Idx);
-  void swapGroups(int srcGroupIdx, int srcChromosomeIdx, int destGroupIdx, int destChromosomeIdx);
-  int getBestChromosomeID();  
-  bool initialize(GGAParams *params);
+  void PrintPopulation();
+  void GeneratePopulation();
+  void EvaluatePopulation();
+  int AddChromosome(long where, Chromosome addedChromosome);  
+  double EvaluateChromosome(int Idx);
+  bool IsChromosomeFeasible(int Idx);
+  void SwapGroups(int srcGroupIdx, int srcChromosomeIdx, int destGroupIdx, int destChromosomeIdx);
+  int GetBestChromosomeID();  
+  bool Initialize(GGAParams *params);
 };
 
 //int copyIndividual(Population *population, long where, char *x, float f);

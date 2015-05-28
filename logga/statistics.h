@@ -27,14 +27,14 @@ typedef struct {
 
 } BasicStatistics;
 
-int intializeBasicStatistics(BasicStatistics *statistics, GGAParams *ggaParams);
-int doneBasicStatistics(BasicStatistics *statistics);
-int computeBasicStatistics(BasicStatistics *statistics, long t, Population *population, GGAAParams *ggaParams);
+int IntializeBasicStatistics(BasicStatistics *statistics, GGAParams *ggaParams);
+int DoneBasicStatistics(BasicStatistics *statistics);
+int ComputeBasicStatistics(BasicStatistics *statistics, long t, Population *population, GGAAParams *ggaParams);
 
-int generationStatistics(FILE *out, BasicStatistics *statistics);
-int fitnessStatistics(FILE *out, BasicStatistics *statistics);
-int finalStatistics(FILE *out, char *termination, BasicStatistics *statistics);
-int printModel(FILE *out, long t, AcyclicOrientedGraph *G, FrequencyDecisionGraph **T);
-int printGuidance(FILE *out, float *p1, int n, float treshold);
+int GenerationStatistics(FILE *out, BasicStatistics *statistics);
+int FitnessStatistics(FILE *out, BasicStatistics *statistics);
+int FinalStatistics(FILE *out, char *termination, BasicStatistics *statistics);
+int PrintModel(FILE *out, long t, AcyclicOrientedGraph *G, FrequencyDecisionGraph **T);
+int PrintGuidance(FILE *out, float *p1, int n, float treshold);
 
 #endif

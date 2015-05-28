@@ -1,12 +1,10 @@
 // ################################################################################
 //
-// name:          main.cc      
 //
-// author:        Mohamed Wahib
+// author:        Mohamed Wahib  <mohamed.attia@riken.jp>
 //
-// purpose:       main routine and the definition of input parameters
 //
-// last modified: Nov 2014
+// last modified: May 2015
 //
 // ################################################################################
 
@@ -21,7 +19,6 @@
 
 GGAParams ggaParams;
 
-// ==========================================================================
 // the definition of input parameters that can be specified in the input file 
 
 ParamStruct params[] =
@@ -64,51 +61,36 @@ ParamStruct params[] =
   {PARAM_END,NULL,NULL,NULL,NULL}
 };
 
-// ================================================================================
-//
-// name:          main
-//
-// function:      calls the initialization, the BOA, and the done methods, simply
-//                the main function
-//
-// parameters:    argc.........the number of arguments sent to the program
-//                argv.........an array of arguments sent to the program (including
-//                             its name and the path)
-//
-// returns:       (int) 0
-//
-// ================================================================================
 
 int main(int argc, char **argv)
 {
   // process the arguments, read the input file (if specified)
 
-  startUp(argc, argv, params);
+  StartUp(argc, argv, params);
 
-  // initialize the BOA
+  // initialize LOGGA
 
-  initialize(&boaParams);
+  Initialize(&ggaParams);
 
   // print the header to stdout, and most of the output files
 
-  printTheHeader(stdout);
-  printTheHeader(getLogFile());
-  printTheHeader(getModelFile());
+  PrintTheHeader(stdout);
+  PrintTheHeader(getLogFile());
+  PrintTheHeader(getModelFile());
 
   // print the values of the parameters to stdout and the log file
 
-  printParamValues(stdout,params);
-  printParamValues(getLogFile(),params);
+  PrintParamValues(stdout,params);
+  PrintParamValues(getLogFile(),params);
 
   // run the boa
 
-  boa(&boaParams);
+  GGA(&ggaParams);
 
   // free the used resources
 
-  done(&boaParams);
+  Done(&ggaParams);
 
-  // get back
 
   return 0;
 }

@@ -3,6 +3,6 @@
 
 #include "gga.h"
 
-int selectTheBest(Population *population, Population *parents, GGAParams *params);
+int SelectTheBest(Population *population, Population *parents, GGAParams *params);
 
 #endif

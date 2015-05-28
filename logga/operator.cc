@@ -1,38 +1,11 @@
-s// ################################################################################
-//
-// name:          operator.cc      
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions for handling custom genetic operators
-//
-// last modified: August 2014
-//
-// ################################################################################
-
 #include <stdlib.h>
 #include <string.h>
 
 #include "operator.h"
 #include "chromosome.h"
 #include "group.h"
-//#include "memalloc.h"
 
-// ================================================================================
-//
-// name:          applyCrossover
-//
-// function:      applies crossover on two chromosomes
-//
-// parameters:    parents......the selected set of promising solutions
-//                offspring....the resulting population of offspring
-//                ggaParams....the parameters sent to the GGA
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-Chromosome * applyCrossover(Population *parents, Population *offspring, GGAParams *ggaParams)
+Chromosome * ApplyCrossover(Population *parents, Population *offspring, GGAParams *ggaParams)
 {
   
     
@@ -130,21 +103,8 @@ Chromosome * applyCrossover(Population *parents, Population *offspring, GGAParam
   return;
 }
 
-// ================================================================================
-//
-// name:          applyMutation
-//
-// function:      applies mutation on one chromosomes
-//
-// parameters:    parents......the selected set of promising solutions
-//                offspring....the resulting population of offspring
-//                ggaParams....the parameters sent to the GGA
-//
-// returns:       (int) 0
-//
-// ================================================================================
-
-void applyMutation(Population *parents, Population *offspring, GGAParams *ggaParams)
+/*
+void ApplyMutation(Population *parents, Population *offspring, GGAParams *ggaParams)
 {
   // remove groups at random
 
@@ -152,18 +112,7 @@ void applyMutation(Population *parents, Population *offspring, GGAParams *ggaPar
 
   return;
 }
-// ================================================================================
-//
-// name:          resetOperator
-//
-// function:      resets the operator (pretty much set everything to null and give
-//                a negative gain)
-//
-// parameters:    x...the operator to reset
-//                
-// returns:       (int) 0
-//
-// ================================================================================
+*/
 
 //int resetOperator(Operator *x)
 //{

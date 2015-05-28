@@ -22,11 +22,11 @@ typedef struct {
   GetValueDescription *getValueDescription;
 } ParamStruct;
 
-int getFirstString(FILE *f, char *s);
-int setParamValue(FILE *f, ParamStruct *param);
-int getParamsFromFile(char *filename, ParamStruct params[]);
-int printParamsDescription(FILE *out, ParamStruct params[]);
-int printParamValues(FILE *out, ParamStruct params[]);
+int GetFirstString(FILE *f, char *s);
+int SetParamValue(FILE *f, ParamStruct *param);
+int GetParamsFromFile(char *filename, ParamStruct params[]);
+int PrintParamsDescription(FILE *out, ParamStruct params[]);
+int PrintParamValues(FILE *out, ParamStruct params[]);
 
 char *yesNoDescriptor(int i);
 

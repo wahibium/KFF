@@ -18,24 +18,20 @@ typedef struct {
 } Fitness;
 
 
-double roofline(Chromosome *chromosome);
-double simplemodel(Chromosome *chromosome);
-double complexmodel(Chromosome *chromosome);
-
-char bestSolution(char *x, int n);
+char BestSolution(char *x, int n);
 
 
-int  setFitness(int n);
-char *getFitnessDesc(int n);
+int  SetFitness(int n);
+char *GetFitnessDesc(int n);
 
-int initializeFitness(GGAParams *ggaParams);
-int doneFitness(GGAParams *ggaParams);
-double getFitnessValue(char *x, int n);
-int isBestDefined();
-int isOptimal(char *x, int n);
+int InitializeFitness(GGAParams *ggaParams);
+int DoneFitness(GGAParams *ggaParams);
+double GetFitnessValue(char *x, int n);
+int IsBestDefined();
+int IsOptimal(char *x, int n);
 
-int resetFitnessCalls(void);
-long fitnessCalled(void);
-long getFitnessCalls(void);
+int ResetFitnessCalls(void);
+long FitnessCalled(void);
+long GetFitnessCalls(void);
 
 #endif

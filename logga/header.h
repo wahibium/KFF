@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-int printTheHeader(FILE *out);
+int PrintTheHeader(FILE *out);
 
 #endif

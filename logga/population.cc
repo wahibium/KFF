@@ -1,16 +1,3 @@
-// ################################################################################
-//
-// name:          population.cc
-//
-// author:        Mohamed Wahib
-//
-// purpose:       functions for manipulation with the populations of strings and
-//                the strings themselves
-//
-// last modified: Feb 2014
-//
-// ################################################################################
-
 #include <stdio.h>
 #include <string.h>
 #include <vector.h>
@@ -23,19 +10,6 @@
 #include "sharingset.h"
 
 using namespace std;
-
-// ================================================================================
-//
-// name:          Population
-//
-// function:      allocates memory for a population and sets its size
-//
-// parameters:    N............the number of chromosomes for a population to contain
-//                
-//
-// returns:       void
-//
-// ================================================================================
 
 void Population::Population(int len)
 {
@@ -52,18 +26,6 @@ void Population::Population(int len)
   return;
 }
 
-// ================================================================================
-//
-// name:          ~Population
-//
-// function:      frees the memory used by a population
-//
-// parameters:    
-//
-// returns:       void
-//
-// ================================================================================
-
 void Population::~Population()
 {
 
@@ -75,19 +37,7 @@ void Population::~Population()
   return;
 }
 
-// ================================================================================
-//
-// name:          generatePopulation
-//
-// function:      generates all chromosomes in a population at random
-//
-// parameters:    none
-//
-// returns:       void
-//
-// ================================================================================
-
-void Population::generatePopulation()
+void Population::GeneratePopulation()
 {
   // TWO METHODS FOR INITIALIZATION
   // METHOD 1
@@ -173,110 +123,51 @@ void Population::generatePopulation()
   return;
 }
 
-// ================================================================================
-//
-// name:          evaluatePopulation
-//
-// function:      evaluates fitness for all chromosomes in the population
-//
-// parameters:    none
-//
-// returns:       void
-//
-// ================================================================================
-
-void Population::evaluatePopulation()
+void Population::EvaluatePopulation()
 {
   
   for (int i=0; i<N; i++)
-    f[i] = evaluateChromosome(chromosomes[i]);
+    f[i] = EvaluateChromosome(chromosomes[i]);
   
   return;
 }
 
-// ================================================================================
-//
-// name:          evaluateChromosome
-//
-// function:      evaluates fitness for a chromosome in the population
-//
-// parameters:    Idx......index of chromosome to evaluate
-//
-// returns:       double
-//
-// ================================================================================
 
-double Population::evaluateChromosome(int Idx)
+double Population::EvaluateChromosome(int Idx)
 {
   
-  return getFitnessValue(chromosomes[Idx]);
+  return GetFitnessValue(chromosomes[Idx]);
 }
 
-// ================================================================================
-//
-// name:          isChromosomeFeasible
-//
-// function:      checks if a chromosome is a feasible solution
-//
-// parameters:    Idx......index of chromosome to check
-//
-// returns:       bool
-//
-// ================================================================================
 
-bool Population::isChromosomeFeasible(int Idx)
+bool Population::IsChromosomeFeasible(int Idx)
 {
-  //getFitnessValue(chromosomes[Idx])
-  
-  return true;
+  if(GetFitnessValue(chromosomes[Idx]) > 0)
+    return true;
+  else
+    return false;
 }
 
-// ================================================================================
-//
-// name:          swapGroups
-//
-// function:      swaps specified two groups in different chromosomes in the population
-//
-// parameters:    srcGroupIdx..........the population where to swap the specified string
-//                srcChromosomeIdx.....a position of the first string to swap
-//                destGroupIdx.........a position of the second string to swap
-//                destChromosomeIdx....a position of the second string to swap
-//
-// returns:       void
-//
-// ================================================================================
 
-void Population::swapGroups(int srcGroupIdx, int srcChromosomeIdx, int destGroupIdx, int destChromosomeIdx)
+void Population::SwapGroups(int srcGroupIdx, int srcChromosomeIdx, int destGroupIdx, int destChromosomeIdx)
 {
 
   // Allocate temp. Copy src to tempGroup
   Group tempGroup;
-  allocateGroup(tempGroup, (chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx)->groupLen, (chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx)->groupVal);
+  AllocateGroup(tempGroup, (chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx)->groupLen, (chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx)->groupVal);
   
   // dest to src
-  freeGroup((chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx));  
-  allocateGroup((chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx), (chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx)->groupLen, (chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx)->groupVal);  
+  FreeGroup((chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx));  
+  AllocateGroup((chromosomes+srcChromosomeIdx)->(groupArr+srcGroupIdx), (chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx)->groupLen, (chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx)->groupVal);  
 
   // tmp to dest
-  freeGroup((chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx));
-  allocateGroup((chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx), tempGroup.groupLen, tempGroup.groupVal);  
+  FreeGroup((chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx));
+  AllocateGroup((chromosomes+destChromosomeIdx)->(groupArr+destGroupIdx), tempGroup.groupLen, tempGroup.groupVal);  
 
   return;
 }
 
-// ================================================================================
-//
-// name:          printPopulation
-//
-// function:      prints out the poplulation to a stream
-//
-// parameters:    out..........the stream to print the to
-//
-// returns:       void
-//
-// ================================================================================
-
-void Population::printPopulation(FILE *out)
+void Population::PrintPopulation(FILE *out)
 {
 
   if (out==NULL)
@@ -287,32 +178,21 @@ void Population::printPopulation(FILE *out)
 
   for(int j=0;j<N;j++){
       fprintf(out,"\nChromosome: %d\n",j);
-      printChromosome(chromosomes+j,out);
+      PrintChromosome(chromosomes+j,out);
     }
   }
   return;
 
 }
 
-// ================================================================================
-//
-// name:          getBestChromosomeID
-//
-// function:      return ID of chromosome with best fitness
-//
-// parameters:    none
-//
-// returns:       int
-//
-// ================================================================================
-int Population::getBestChromosomeID()
+int Population::GetBestChromosomeID()
 {
-  double topFitnessValue = evaluateChromosome(0);
+  double topFitnessValue = EvaluateChromosome(0);
   int topFitnessIdx = 0;
   for(int i=1;i<N)
-    if(evaluateChromosome(i)<topFitnessValue)
+    if(EvaluateChromosome(i)<topFitnessValue)
       {
-        topFitnessValue = evaluateChromosome(i);
+        topFitnessValue = EvaluateChromosome(i);
         topFitnessIdx = i;
       }  
         
@@ -320,47 +200,33 @@ int Population::getBestChromosomeID()
 
 }
 
-// ================================================================================
-//
-// name:          initialize
-//
-// function:      initializes everything the BOA needs to be run properly
-//                (initialize fitness function, metric, random number generator,
-//                etc.)
-//
-// parameters:    boaParams....the parameters sent to the BOA
-//
-// returns:       bool
-//
-// ================================================================================
-
-bool Population::initialize(GGAParams *ggaParams)
+bool Population::Initialize(GGAParams *ggaParams)
 {
   char filename[200];
 
   // set the fitness function to be optimized
 
-  setFitness(ggaParams->fitnessNumber);
+  SetFitness(ggaParams->fitnessNumber);
  
   // initialize fitness
 
-  initializeFitness(ggaParams);
+  InitializeFitness(ggaParams);
 
   // initialize metric
 
-  initializeMetric(ggaParams);
+  InitializeMetric(ggaParams);
 
   // reset the counter for fitness calls
 
-  resetFitnessCalls();
+  ResetFitnessCalls();
 
   // set random seed
 
-  setSeed(ggaParams->randSeed);
+  SetSeed(ggaParams->randSeed);
 
   // initialize statistics
 
-  intializeBasicStatistics(&populationStatistics,ggaParams);
+  IntializeBasicStatistics(&populationStatistics,ggaParams);
 
   // open output files (if the base of the output file names specified)
 
@@ -377,8 +243,6 @@ bool Population::initialize(GGAParams *ggaParams)
     }
   else
     logFile = fitnessFile = modelFile = NULL;
-
-  // get back
 
   return true;
 }

@@ -14,13 +14,13 @@ struct Chromosome{
   vector<Group> groups;	   //  groups in chromosome
 };
   //void initChromosome(Chromosome *chromosome, int len, Group *gArr, int id);
-  void initChromosome(Chromosome *chromosome);
-  void freeChromosome(Chromosome *chromosome);
-  void printChromosome(Chromosome *chromosome, FILE *out);    
-  void copyChromosome(Chromosome *src, Chromosome *dest);
-  void addGrouptoChromosome(Chromosome *chromosome, Group *group);
-  void removeGroupFromChromosome(Chromosome *chromosome, Group *group);
-  void addEmptyGrouptoChromosome(Chromosome *chromosome);
+  void InitChromosome(Chromosome *chromosome);
+  void FreeChromosome(Chromosome *chromosome);
+  void PrintChromosome(Chromosome *chromosome, FILE *out);    
+  void CopyChromosome(Chromosome *src, Chromosome *dest);
+  void AddGrouptoChromosome(Chromosome *chromosome, Group *group);
+  void RemoveGroupFromChromosome(Chromosome *chromosome, Group *group);
+  void AddEmptyGrouptoChromosome(Chromosome *chromosome);
   //void replaceGroup(Group *group, int idX);
 
 

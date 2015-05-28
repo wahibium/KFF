@@ -5,7 +5,7 @@
 #
 #  author:        Mohamed Wahib
 #
-#  last modified: Nov 2014
+#  last modified: May 2015
 #
 #  ===============================================================
 #
@@ -38,6 +38,7 @@ CC = g++
 FLAGS  = -O3 -std=c++98
 
 # OBJECT FILES
+# args.o to utils.o LOGGA files || aux.o to translator.o translators files
 OBJS  = args.o                   \      
         chromosome.cc 			 \
         fitness.o                \
@@ -58,7 +59,19 @@ OBJS  = args.o                   \
         stack.o                  \
         startUp.o                \
         statistics.o             \
-        utils.o 				 
+        utils.o 				 \
+        aux.o 					 \
+        ast.o                    \
+        attribute.o              \
+        common.o                 \
+        config.o                 \
+        cuda.o                   \
+        kernel.o                 \
+        optimizations.o          \
+        range.o                  \
+        reference.o              \
+        stencil.o                \
+        translator.o              
 
 # Specify folder
 VPATH = logga 				\

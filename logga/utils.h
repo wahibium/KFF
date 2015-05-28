@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include <string.h>
 
-int swapInt(int *a, int *b);
-int swapLong(long *a, long *b);
-void swapPointers(void **a, void **b);
-int printSpaces(FILE *out, int num);
+int SwapInt(int *a, int *b);
+int SwapLong(long *a, long *b);
+void SwapPointers(void **a, void **b);
+int PrintSpaces(FILE *out, int num);
 
 /* Exit function to handle fatal errors*/
 inline void err_exit()
