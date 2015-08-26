@@ -1,0 +1,15 @@
+populationSize  = 400
+problemSize     = 60
+fitnessFunction = 0
+
+offspringPercentage = 50
+
+tournamentSize = 4 
+allowMerge = 0
+
+maxNumberOfGenerations = 40
+epsilon                = 0.01
+
+outputFile = output.onemax.60
+
+randSeed = 123

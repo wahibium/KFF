@@ -1,0 +1,23 @@
+SRC_HYDROLIB=../HydroGrid/
+SRC_GBLOB=../src/
+
+# macro for name of my compiler
+FC = gfortran
+NVCC = nvcc
+#NVCC = cuda-gdb
+
+# macro for compilation options
+#NVCCFLAGS = -O -arch=sm_20 -deviceemu --compiler-bindir /usr/bin/gcc 
+NVCCFLAGS = -O -arch=sm_20 --compiler-bindir /usr/bin/gcc 
+FCFLAGS = -O -Wall -ffree-line-length-none # Optimized
+
+#-use_fast_math
+#-arch=sm_11 
+#-arch=sm_13 
+#-deviceemu
+#-ptxas-options=-v
+#-g -G #debug mode
+
+include MakefileCommon
+
+# EOF

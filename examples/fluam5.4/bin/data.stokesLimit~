@@ -1,0 +1,62 @@
+#In general it's better don't use this option
+#setDevice 1
+
+#
+
+#Chose scheme, Stokes limit
+particles		1
+stokesLimit
+
+#System size, the system should be in 3D, mx,my,mz >= 3
+cells			32   32  32
+celldimension		32   32  32
+
+
+shearviscosity          1
+extraMobility		0
+
+
+numberparticles		1
+
+#The particle volume should be 8 times the cell volume
+volumeParticle		8
+
+
+
+#Cutoff for non-bonded interactions
+cutoff                  2
+
+maxNumberPartInCellNonBonded    20
+maxNumberPartInCell     20
+
+
+
+temperature             0.01
+numstepsRelaxation	0
+numsteps                1000
+
+dt			1
+
+samplefreq              0
+savefreq		10
+
+initfluid 		0
+
+
+outputname		../data/run1
+
+
+#seed			1
+
+loadparticles		0
+coordinates		/home/floren/gpuFH/bin/kk.coor
+#velocities		/home/floren/gpuFH/bin/kk.vel
+
+
+
+
+
+
+
+
+

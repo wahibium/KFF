@@ -1,0 +1,82 @@
+#
+#
+#Path to fluam
+SRC_FLUAM=../src/
+
+#
+#
+#Path to HydroGrid
+#Uncomment if you have HydroGrid
+#SRC_HYDROLIB=../../HydroGrid/
+
+
+#
+#
+#Fortran compiler
+FC = gfortran
+
+#
+#
+#Cuda compiler
+NVCC = nvcc
+#NVCC = cuda-gdb
+
+
+#
+#
+#Some libraries may be required
+#CUDALIB=-L/usr/local/cuda-5.0/lib64 -lcurand
+
+#
+#
+#Cuda flags
+NVCCFLAGS = -O -arch=sm_13 --compiler-bindir /usr/bin/gcc $(CUDALIB)
+
+#
+#
+#Other flags you may want to add
+#-use_fast_math
+#-arch=sm_11 
+#-arch=sm_13 
+#-arch=sm_20 
+#-deviceemu
+#-ptxas-options=-v
+#-g -G #debug mode
+
+#
+#
+#Fortran flags
+FCFLAGS = -O -Wall -ffree-line-length-none # Optimized
+
+#
+#
+#Executable name
+EFILE = fluam
+
+#
+#
+#Includes for fluam,
+NVCCINCLS = -I./ -I$(SRC_FLUAM) 
+
+#
+#
+#Includes for fluam, path to cutil.h file
+#We assume NVIDIA_GPU_Computing_SDK is in the user HOME
+#NVIDIA_GPU_Computing_SDK is needed for the cutil.h files
+#NVCCINCLS += -I$(HOME)/NVIDIA_GPU_Computing_SDK/C/common/inc/
+NVCCINCLS +=
+
+#
+#
+#Includes to HydroGrid
+HydroAnalisysINCL = -I$(SRC_HYDROLIB)
+
+#
+#
+#Libraries
+LIBRARIES = -L/usr/local/cuda/lib64 -lcurand
+
+#
+#
+#Objects
+OBJS=

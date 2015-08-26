@@ -1,0 +1,154 @@
+#To modify the code go to
+#the file 
+#gpuFH/src/schemeIncompressibleBinaryMixture.cu
+#
+#and follow the flow.
+
+
+#indicate what kind of simulation
+#you want to perform. In this case a 
+#incompressible binary mixture
+#with a trapezoidal rule for
+#the advection
+#incompressibleBinaryMixture
+# MidPoint is really now backward Euler split scheme:
+incompressibleBinaryMixtureMidPoint
+
+#identity_prefactor                   1 # Backward Euler
+identity_prefactor                   0 # Limiting dynamics
+
+#indicate number of cells in each direction
+#mx my mz
+#cells 1024 64 1
+#cells 128 64 1
+cells 256 128 1
+#cells 512 256 1 # Refined
+#cells 8 128 1 # Deterministic
+
+#indicate size of the simulation box
+#lx ly lz
+#IMPORTANT: this notation is confusing, this is
+#the size of the simulation box NOT the size of a
+#single cell
+#celldimension		10240 640 10
+#celldimension		1280 640 10
+
+celldimension		2560 1280 10
+#celldimension		2560 1280 1E16 # no fluctuations
+#celldimension		80 1280 1E16 # deterministic
+#celldimension		2560 1280 1E5 # Linearized
+
+#indicate a seed for the random numbers.
+#If you don't give any, the code takes
+#one from the computer clock.
+#seed			1
+
+
+#indicate the fluid density
+densfluid               1 # Hard disks = 0.764
+
+
+#indicate the fluid viscosity
+shearviscosity           1 # original
+#shearviscosity          0.3162277 # Rescaled
+#shearviscosity          3.162277 # stiff rescaled
+#shearviscosity          10 # vstiff
+#shearviscosity           0.1 # nonstiff
+
+#indicate the temperature in energy units
+#k_B*T
+temperature             1.0
+
+
+#indicate concentration for the species 0
+concentration 	1
+
+
+#indicate mass diffusion
+diffusion	0.01 # original
+#diffusion	0.04 # Renormalized
+#diffusion	0.03162277 # Rescaled
+#diffusion	0.003162277 # stiff
+#diffusion	0.001 $ vstiff
+#diffusion       0.1 # nonstiff
+
+#indicate molecular masses of the
+#two species
+massSpecies0	1
+massSpecies1	1
+
+
+#indicate the external gradient of *concentration* (S_T*grad(T))
+gradTemperature   0
+
+
+#indicate the time step
+#dt 10
+#dt			100
+dt			1000
+#dt			10000
+#dt  31.62277 # Rescaled time step
+#dt  3.162277 # Rescaled time step
+#dt 1
+
+#indicate the number of relaxation times,
+#where the code doesn't save data or
+#call HydroGrid
+numstepsRelaxation	0
+
+
+#indicate number of time-steps
+#numsteps 9001
+#numsteps                 2500001 # vstiff
+#numsteps                 250001 # stiff
+#numsteps                25001 # original
+#numsteps                2501 # rescaled
+numsteps                251 # nonstiff
+#numsteps                26
+
+#indicate with which frequency the code
+#should call HydriGrid for average
+#negative means only do projectHydroGrid
+#samplefreq		-100000 # vstiff
+#samplefreq		-10000 # stiff
+#samplefreq		-1000 # original
+#samplefreq		-100 # rescaled
+samplefreq		-10 # nonstiff
+
+#indicate with which frequency the code
+#HydorGrid should save data.
+#IMPORTANT, savefreq should be a multiple
+#of samplefreq
+#negative means only do projectHydroGrid
+#savefreq		-100000
+#savefreq		-10000
+#savefreq		-1000
+#savefreq		-100
+savefreq		-10
+
+#how initialize the fluid
+#0=fluid with homogeneous velocity
+#  and concentration
+#5=tanh profile for periodic mixing
+initfluid 5
+
+
+#indicate a constant background velocity
+#for the fluid
+#vx vy vz
+backgroundvelocity 0  0	 0
+
+
+#indicate name for the output files
+#IMPORTANT, the directory you are using should
+#exist before you call the code
+outputname		Output/Mixing2D
+#outputname		Output/Mixing2D.linearized
+#outputname		Output/Mixing2D.nonlinear
+#outputname		Output/Mixing2D.deterministic
+
+#if you want to load a previous configuration
+#provide the file with the fluid configuration
+#fluid                 	Output/Mixing2D.fluidFinalConfiguration
+
+

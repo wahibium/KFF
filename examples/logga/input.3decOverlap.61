@@ -1,0 +1,15 @@
+populationSize  = 4000
+problemSize     = 61
+fitnessFunction = 5
+
+offspringPercentage = 50
+
+tournamentSize = 4 
+allowMerge = 0
+
+maxNumberOfGenerations = 50
+epsilon                = 0.01
+
+outputFile = output.3decOverlap.61
+
+randSeed = 123

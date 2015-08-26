@@ -1,0 +1,15 @@
+populationSize  = 2000
+problemSize     = 30
+fitnessFunction = 4
+
+offspringPercentage = 50
+
+tournamentSize = 4 
+allowMerge = 0
+
+maxNumberOfGenerations = 60
+maxOptimal             = 75
+
+outputFile = output.bipolar.30
+
+randSeed = 123
